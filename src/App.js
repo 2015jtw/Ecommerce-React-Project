@@ -18,7 +18,7 @@ function App() {
         <Route path='shop' element={<Shop/>}/>
         <Route path='auth' element={<Authentication/>}/>
       </Route>
-      
+      {/* {/* this gd */}
       
     </Routes>
     
