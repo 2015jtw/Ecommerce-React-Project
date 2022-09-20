@@ -1,6 +1,7 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth'
-import {getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signOut, onAuthStateChanged, } from 'firebase/auth'
+import {getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore'
 
 
 // Your web app's Firebase configuration
@@ -27,6 +28,36 @@ export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
  
 export const db = getFirestore();
+
+// adding new shop data js file to firestore
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
+
+    objectsToAdd.forEach((object) => {
+        const docRef = doc(collectionRef, object.title.toLowerCase());
+        batch.set(docRef, object)
+    })
+
+    await batch.commit();
+    console.log("done");
+
+}
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+    const categoryMap = querySnapshot.docs.reduce((accumulator, docSnapshot) => {
+        const {title, items} = docSnapshot.data();
+        accumulator[title.toLowerCase()] = items;
+        return accumulator;
+    }, {})
+
+    return categoryMap;
+}
 
 export const createUserDocFromAuth = async (userAuth, additionalInfo = {displayName: 'mike'}) => {
     if(!userAuth) return;
