@@ -10,7 +10,7 @@ import { CartContext } from "../../contexts/cart-context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import './navigation.styles.scss'
+import {NavigationContainer} from './navigation.styles.jsx'
 
 const Navigation = () => {
 
