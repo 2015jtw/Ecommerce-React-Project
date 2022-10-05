@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
+import { createAction } from "../utils/reducers/reducer.util";
 
 // add helper function
 export const addCartItem = (cartItems, productToAdd) => {
@@ -102,13 +103,12 @@ export const CartProvider = ({children}) => {
 
         // dispatch new action with payload
         // newCartItems, newCartTotal, newCartCount 
-        dispatch({
-            type: CART_ACTION_TYPES.SET_CART_ITEMS, 
-            payload: {
+        dispatch(
+            createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
                 cartItems: newCartItems, 
                 cartTotal: newCartTotal, 
                 cartCount: newCartCount
-            }})
+            }))
 
     }
 
@@ -128,7 +128,8 @@ export const CartProvider = ({children}) => {
     }
 
     const setIsCartOpen = (boolean) => {
-        dispatch({type: CART_ACTION_TYPES.SET_IS_CART_OPEN, payload: boolean})
+        dispatch(
+            createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean))
     }
 
     const value = {
