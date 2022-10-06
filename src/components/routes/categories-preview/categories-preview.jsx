@@ -1,11 +1,15 @@
 // import SHOP_DATA from '../../../shop-data.json'
-
-import { useContext, Fragment } from 'react';
-import { CategoriesContext } from '../../../contexts/categories-context';
+import { Fragment } from 'react';
 import CategoryPreview from '../../category-preview/category-preview';
 
+// import redux shop files
+import { selectCategoriesMap } from '../../../store/categories/category-selector';
+import { useSelector } from 'react-redux';
+
+
 const CategoriesPreview = () => {
-    const {categoriesMap} = useContext(CategoriesContext);
+
+    const categoriesMap = useSelector(selectCategoriesMap);
 
     return(
 
