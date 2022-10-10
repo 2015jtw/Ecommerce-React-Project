@@ -32,7 +32,7 @@ const Checkout = () => {
             </div>
           
 
-           
+        
             {cartItems.map((item) => {
                 const {id, name, qty} = item;
                 return(
