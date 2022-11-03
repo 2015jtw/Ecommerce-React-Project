@@ -73,6 +73,13 @@ const PaymentForm = () => {
                 <FormContainer 
                     onSubmit={paymentHandler}
                 >
+                    <p>Disclaimer this is a test payment form. Use the following card number: 4242424242424242. Use any valid future and any three-digit CVC. 
+                        Use any value you like for other form fields
+                    </p>
+                    
+                    
+
+
                     <h2>Credit Card Payment: </h2>
                     <CardElement/>
                     <PaymentButton 
