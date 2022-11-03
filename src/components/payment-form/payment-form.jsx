@@ -60,8 +60,8 @@ const PaymentForm = () => {
         }
         else{
             if(paymentResult.paymentIntent.status === 'succeeded'){
-                // <Route path='success' element={<SuccessPage/>}/>
-                alert('payment successful')
+                <Route path='success' element={<SuccessPage/>}/>
+                // alert('payment successful')
             }
         }
 
