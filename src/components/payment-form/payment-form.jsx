@@ -8,6 +8,11 @@ import { useSelector } from "react-redux";
 import { selectCartTotal } from "../../store/cart/cart-selector";
 import { selectCurrentUser } from "../../store/user/user-selector";
 
+// import react-router 
+import {Route } from 'react-router-dom';
+import { SuccessPage } from "../success-page/success-page";
+
+
 const PaymentForm = () => {
 
     const stripe = useStripe();
@@ -55,7 +60,8 @@ const PaymentForm = () => {
         }
         else{
             if(paymentResult.paymentIntent.status === 'succeeded'){
-                alert('Payment successful')
+                // <Route path='success' element={<SuccessPage/>}/>
+                alert('payment successful')
             }
         }
 

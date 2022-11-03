@@ -25,7 +25,7 @@ const loggerMiddleware = (store) => (next) => (action) => {
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['user']
+    blacklist: ['user', 'cart']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
